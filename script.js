@@ -5,7 +5,7 @@ const taskForm = document.getElementById('input-task-form');
 const inputField = document.getElementById('task-input');
 const listView = document.getElementById('task-list-view');
 
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];   // User's tasks will be regiserted here for any task manipulation
+let tasks = [] && JSON.parse(localStorage.getItem('tasks'));   // User's tasks will be regiserted here for any task manipulation
 renderTasks();
 
 taskForm.addEventListener('submit', (event) =>{
