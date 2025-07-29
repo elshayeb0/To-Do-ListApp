@@ -23,6 +23,9 @@ taskForm.addEventListener('submit', (event) =>{
 
 listView.addEventListener('click', (event) => {
 
+    const clickedElement = event.target;
+    const taskItem = clickedElement.closest('.task-item');
+
     if (event.target.classList.contains('btn-delete')) {                //Check if delete button is pressed
         const id = event.target.closest('.task-item').dataset.id;           //Elzero tips again
 
