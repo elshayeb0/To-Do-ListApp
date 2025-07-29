@@ -70,3 +70,8 @@ body {
 .btn-delete:hover {
     background-color: #C0392B;
 }
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.6;
+}

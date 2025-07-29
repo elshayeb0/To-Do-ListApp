@@ -5,8 +5,8 @@ const taskForm = document.getElementById('input-task-form');
 const inputField = document.getElementById('task-input');
 const listView = document.getElementById('task-list-view');
 
-let tasks =[];   // User's tasks will be regiserted here for any task manipulation
-
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];   // User's tasks will be regiserted here for any task manipulation
+renderTasks();
 
 taskForm.addEventListener('submit', (event) =>{
         event.preventDefault();
@@ -22,10 +22,15 @@ taskForm.addEventListener('submit', (event) =>{
 });
 
 listView.addEventListener('click', (event) => {
+
     if (event.target.classList.contains('btn-delete')) {                //Check if delete button is pressed
         const id = event.target.closest('.task-item').dataset.id;           //Elzero tips again
 
-        deleteTask(id);
+        deleteTask(id);             //Delete bbutton
+    }
+    else if (clickedElement.classList.contains('task-text')) {
+        const id = taskItem.dataset.id;
+        toggleComplete(id);        //mark as completed
     }
 });
 
@@ -37,7 +42,8 @@ function addTask(text){
         completed: false            //Default to boolean false for tasks to be incomplete
     }
         tasks.push(task);                   //Add new task to array
-        renderTasks();                       //Update the UI of the user
+        saveTasks(); 
+        renderTasks();                      //Update the UI of the user
 }
 
 function renderTasks(){
@@ -49,6 +55,10 @@ function renderTasks(){
 
         li.setAttribute('data-id', task.id);            //Differentiate between which task to delete
 
+        if (task.completed) {
+            li.classList.add('completed');
+        }
+
         li.innerHTML = `<span>${task.text}</span><button class="btn-delete">Delete</button>`;
 
         listView.appendChild(li);
@@ -57,15 +67,22 @@ function renderTasks(){
 }
 
 function deleteTask(id){
-     tasks = tasks.filter(task => task.id != id);          //
-    renderTasks();                                      //Update tasks array
+     tasks = tasks.filter(task => task.id != id);          
+    saveTasks();
+    renderTasks();                                          //Update tasks array
+    
 }
 
+function toggleComplete(id) {
+    const taskToToggle = tasks.find(task => task.id == id);
+    taskToToggle.completed = !taskToToggle.completed;
+    saveTasks(); 
+    renderTasks();
+}
 
-
-
-
-
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
 
 
