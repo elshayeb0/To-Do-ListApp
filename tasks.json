@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "text": "Hello Mark!",
+    "status": "todo"
+  },
+  {
+    "id": 2,
+    "text": "Is this a correct JSON Array Project ?",
+    "status": "completed"
+  },
+  {
+    "id": 3,
+    "text": "Ready for your comments",
+    "status": "deleted"
+  }
+]
