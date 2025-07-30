@@ -12,8 +12,13 @@ document.addEventListener('DOMContentLoaded' , ()=>{
     const toCompleted = document.getElementById('completed-list');
     const toDeleted = document.getElementById('deleted-list');
 
-    const boardContainer = document.querySelector('.tasks-columns');     //All three cloumns
-    const columnsContainer = document.querySelectorAll('.task-list');    //Collection for tasks
+    const boardContainer = document.querySelector('.tasks-columns');    
+    const columnsContainer = document.querySelectorAll('.task-list');    
+
+    const taskForm = document.getElementById('add-task-form');
+    const taskInput = document.getElementById('task-input');
+    const btnSubmit = document.getElementById('task-btn');
+
 
     function clearBoard(){                          //Clears the task board everytime it's opened
        toDo.innerHTML = '';
@@ -51,6 +56,14 @@ document.addEventListener('DOMContentLoaded' , ()=>{
         });
     }
 
+    function addTask(text){                             //Create a new task by user and add it to the tasks array above
+        const newTask = { id: Date.now(), text: text, status: 'todo' }
+        tasks.push(newTask);        
+        renderTasks();                           
+    }
+       
+
+
     boardContainer.addEventListener('dragstart', (event)=>{                    //Set event listener only for task items if found we get the id from the dataset
         if(event.target.classList.contains('task-item')){
             event.dataTransfer.setData('text/plain', event.target.dataset.id);
@@ -77,26 +90,38 @@ document.addEventListener('DOMContentLoaded' , ()=>{
 
     });
 
+    taskForm.addEventListener('submit', (event)=>{
+        event.preventDefault();
+
+        const text = taskInput.value.trim();
+
+        if(text !== ''){
+            addTask(text);                          //Added Later
+        }
+
+        taskInput.value = '';
+
+    });
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     renderTasks();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });

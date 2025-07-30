@@ -58,3 +58,33 @@ body {
 .task-item:active {
     cursor: grabbing;
 }
+
+/* User's add task  */
+#add-task-form{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin: 10px;
+    gap: 10px;
+
+}
+
+
+#task-input{
+    width: 500px;
+    padding: 10px;
+    border-radius: 8px;
+    border-style: none;
+}
+
+#task-btn{
+    padding: 5px;
+    width: 100px;
+    border-radius: 8px;
+    border-style: none;
+    cursor: pointer;
+}
+
+#task-btn:hover{
+    background-color: #FFFFFF;
+}
