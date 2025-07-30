@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded' , ()=>{
     const toCompleted = document.getElementById('completed-list');
     const toDeleted = document.getElementById('deleted-list');
 
+    const boardContainer = document.querySelector('.tasks-columns');     //All three cloumns
+    const columnsContainer = document.querySelectorAll('.task-list');    //Collection for tasks
+
     function clearBoard(){                          //Clears the task board everytime it's opened
        toDo.innerHTML = '';
        toCompleted.innerHTML = '';
@@ -47,6 +50,32 @@ document.addEventListener('DOMContentLoaded' , ()=>{
 
         });
     }
+
+    boardContainer.addEventListener('dragstart', (event)=>{                    //Set event listener only for task items if found we get the id from the dataset
+        if(event.target.classList.contains('task-item')){
+            event.dataTransfer.setData('text/plain', event.target.dataset.id);
+        }
+    });
+
+    columnsContainer.forEach(column => {
+    
+        column.addEventListener('dragover', (event)=>{       // Tell the browser it's okay to drop an element
+            event.preventDefault();
+        });
+
+        column.addEventListener('drop', (event) => {    
+        event.preventDefault();
+
+        const taskId = event.dataTransfer.getData('text/plain');
+        const newStatus = event.currentTarget.id.replace('-list', '');
+
+        const taskToUpdate = tasks.find(task => task.id == taskId);
+        taskToUpdate.status = newStatus;
+
+            renderTasks();
+        });
+
+    });
 
     renderTasks();
 
