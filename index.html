@@ -1,28 +1,57 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Aether List</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="#">
-        <title>Your To-Do List</title>
     </head>
     <body>
-        <main id="app-container">
-            <div class="main-page">
-                <h1 class="heading">Today is a good day. Start plotting your ideas right away.</h1>
-                <p class="text">Your To-Do list is waiting for you!</p>
-                <form id="input-task-form">
-                    <input id="task-input" type="text" placeholder="What's on your mind ?"/>
-                    <button class="btn-submit" type="submit">Add a new task</button>
-                </form>
-                <div class="task-list">
-                    <ul id="task-list-view">
-                        
-                    </ul>
-                </div>
+        <!-- Application Container -->
+         <main id="app-container">
+            <!--Kanban Board Body-->
+            <div class="welcome-message">
+                <h1>Say hi to a new day of success and tasks !</h1>
+                <p>Your tasks are waiting. Add one now!</p>
             </div>
-        </main>
+
+            <!-- Tasks in column view all wrapped in one container -->
+
+            <div class="tasks-columns">
+
+                <!-- Each column inside a div to be easily managed for any customization -->
+                
+                <div id="todo-column"> 
+                    
+                    <h2>To-Do</h2>
+
+                    <!-- Tasks Will be held inside another div for list viewing -->
+
+                     <div id="todo-list"></div>
+
+                        </div> 
+
+                            <div id="completed-column">
+
+                                <h2>Completed</h2>
+
+                                <div id="completed-list"></div> 
+
+                                    </div>
+
+                                        <div id="deleted-column"> 
+
+                                            <h2>Deleted</h2>
+
+                                            <div id="deleted-list"></div> 
+
+                                                </div>
+                
+            </div>
+         </main>
 
 
 
@@ -31,7 +60,7 @@
 
 
 
-
-        <script src="script.js"></script>
+        <!-- JavaScript Initialization -->
+         <script src="script.js"></script>
     </body>
 </html>

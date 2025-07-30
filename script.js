@@ -1,72 +1,73 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded' , ()=>{
 
-    const taskForm = document.getElementById('input-task-form');
-    const inputField = document.getElementById('task-input');
-    const listView = document.getElementById('task-list-view');
+    const tasks = [
+        { id: 1, text: 'This is a sample text for todo column', status: 'todo' },
+            
+        { id: 2, text: 'This is a sample text for completed column', status: 'completed', },
 
-    let tasks = [];
+        { id: 3, text: 'This is a sample text for deleted column', status: 'deleted' }
+    ]
 
-    taskForm.addEventListener('submit', (event) => {
-        event.preventDefault();
+    const toDo = document.getElementById('todo-list');
+    const toCompleted = document.getElementById('completed-list');
+    const toDeleted = document.getElementById('deleted-list');
 
-        const text = inputField.value.trim();
-
-        if (text !== '') {
-            addTask(text);
-            inputField.value = '';
-        }
-    });
-
-    listView.addEventListener('click', (event) => {
-        const clickedElement = event.target;
-        const taskItem = clickedElement.closest('.task-item');
-
-        if (clickedElement.classList.contains('btn-delete')) {
-            const id = taskItem.dataset.id;
-            deleteTask(id);
-        } else if (clickedElement.classList.contains('task-text')) {
-            const id = taskItem.dataset.id;
-            toggleComplete(id);
-        }
-    });
-
-    function addTask(text) {
-        const task = {
-            id: Date.now(),
-            text: text,
-            completed: false
-        }
-        tasks.push(task);
-        renderTasks();
+    function clearBoard(){                          //Clears the task board everytime it's opened
+       toDo.innerHTML = '';
+       toCompleted.innerHTML = '';
+       toDeleted.innerHTML = '';
     }
 
-    function renderTasks() {
-        listView.innerHTML = '';
+    function renderTasks(){                        
+        clearBoard();                             //Function call to clear everytime board is rendered
+    
+        tasks.forEach(task => {                  //Task here is each task added which i will loop around
 
-        tasks.forEach((task) => {
-            const li = document.createElement('li');
-            li.className = 'task-item';
-            li.setAttribute('data-id', task.id);
+            const taskItem = document.createElement('div');
+                taskItem.innerHTML = task.text;
+                taskItem.dataset.id = task.id;
+                taskItem.setAttribute('draggable','true');
+                taskItem.className = 'task-item';
 
-            if (task.completed) {
-                li.classList.add('completed');
+
+            if(task.status === 'todo'){
+                //Will add append logic here
+               toDo.appendChild(taskItem);
             }
 
-            li.innerHTML = `<span class="task-text">${task.text}</span><button class="btn-delete">Delete</button>`;
+            else if(task.status === 'completed'){
+                //Will add append logic here
+               toCompleted.appendChild(taskItem);
+            }
 
-            listView.appendChild(li);
+            else if(task.status === 'deleted'){
+                //Will add append logic here
+               toDeleted.appendChild(taskItem);
+            }
+
         });
     }
 
-    function deleteTask(id) {
-        tasks = tasks.filter(task => task.id !== Number(id));
-        renderTasks();
-    }
+    renderTasks();
 
-    function toggleComplete(id) {
-        const taskToToggle = tasks.find(task => task.id == id);
-        taskToToggle.completed = !taskToToggle.completed;
-        renderTasks();
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
