@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Aether List</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!-- Application Container -->
-         <main id="app-container">
-            <!--Kanban Board Body-->
-            <div class="welcome-message">
-                <h1>Say hi to a new day of success and tasks !</h1>
-                <p>Your tasks are waiting. Add one now!</p>
-                <form id="add-task-form">
-                    <input type="text" id="task-input" placeholder="Jot down your thoughts here....">
-                    <button type="submit" id="task-btn">Add Task</button>
-                </form>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aether List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Application Container -->
+    <main id="app-container">
+      <!--Kanban Board Body-->
+      <div class="welcome-message">
+        <h1>Say hi to a new day of success and tasks !</h1>
+        <p>Your tasks are waiting. Add one now!</p>
+        <form id="add-task-form">
+          <input
+            type="text"
+            id="task-input"
+            placeholder="Jot down your thoughts here...."
+          />
+          <button type="submit" id="task-btn">Add Task</button>
+        </form>
+      </div>
 
-            <!-- Tasks in column view all wrapped in one container -->
+      <!-- Tasks in column view all wrapped in one container -->
 
-            <div class="tasks-columns">
+      <div class="tasks-columns">
+        <!-- Each column inside a div to be easily managed for any customization -->
 
-                <!-- Each column inside a div to be easily managed for any customization -->
-                
-                <div id="todo-column"> 
+        <div id="todo-column">
+          <h2>To-Do</h2>
 
-                    <h2>To-Do</h2>
+          <!-- Tasks Will be held inside another div for list viewing -->
 
-                    <!-- Tasks Will be held inside another div for list viewing -->
+          <div id="todo-list" class="task-list"></div>
+        </div>
 
-                     <div id="todo-list" class="task-list"></div>
+        <div id="completed-column">
+          <h2>Completed</h2>
 
-                        </div> 
+          <div id="completed-list" class="task-list"></div>
+        </div>
 
-                            <div id="completed-column">
+        <div id="deleted-column">
+          <h2>Deleted</h2>
 
-                                <h2>Completed</h2>
+          <div id="deleted-list" class="task-list"></div>
+        </div>
+      </div>
+    </main>
 
-                                <div id="completed-list" class="task-list"></div> 
-
-                                    </div>
-
-                                        <div id="deleted-column"> 
-
-                                            <h2>Deleted</h2>
-
-                                            <div id="deleted-list" class="task-list"></div> 
-
-                                                </div>
-                
-            </div>
-         </main>
-
-
-
-
-
-
-
-
-        <!-- JavaScript Initialization -->
-         <script src="script.js"></script>
-    </body>
+    <!-- JavaScript Initialization -->
+    <script src="script.js"></script>
+  </body>
 </html>
